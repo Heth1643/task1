@@ -1,0 +1,14 @@
+D:\learning\Dotnet\DomTask\Model\bin\Debug\net6.0\Model.deps.json
+D:\learning\Dotnet\DomTask\Model\bin\Debug\net6.0\Model.dll
+D:\learning\Dotnet\DomTask\Model\bin\Debug\net6.0\Model.pdb
+D:\learning\Dotnet\DomTask\Model\obj\Debug\net6.0\Model.csproj.AssemblyReference.cache
+D:\learning\Dotnet\DomTask\Model\obj\Debug\net6.0\Model.GeneratedMSBuildEditorConfig.editorconfig
+D:\learning\Dotnet\DomTask\Model\obj\Debug\net6.0\Model.AssemblyInfoInputs.cache
+D:\learning\Dotnet\DomTask\Model\obj\Debug\net6.0\Model.AssemblyInfo.cs
+D:\learning\Dotnet\DomTask\Model\obj\Debug\net6.0\Model.csproj.CoreCompileInputs.cache
+D:\learning\Dotnet\DomTask\Model\obj\Debug\net6.0\Model.dll
+D:\learning\Dotnet\DomTask\Model\obj\Debug\net6.0\refint\Model.dll
+D:\learning\Dotnet\DomTask\Model\obj\Debug\net6.0\Model.pdb
+D:\learning\Dotnet\DomTask\Model\obj\Debug\net6.0\ref\Model.dll
+D:\learning\Dotnet\DomTask\Model\bin\Debug\net6.0\Model.runtimeconfig.json
+D:\learning\Dotnet\DomTask\Model\obj\Debug\net6.0\Model.genruntimeconfig.cache

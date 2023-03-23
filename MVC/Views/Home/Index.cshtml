@@ -1,0 +1,207 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<html>
+
+<head>
+    
+
+  <script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+
+    var i = 0;
+    function inc() {
+        i += 1;
+    }
+    function check()
+    {
+         var checkedBoxes = document.querySelectorAll('input[name=chk]:checked');
+        if(checkedBoxes.length==1)
+        {
+           console.log(checkedBoxes.value);
+
+        }
+    }
+    function Add() {
+        inc();
+        const div = document.getElementById("con");
+        const divChild = document.createElement("div");
+        const spanchild = document.createElement("span");
+
+        spanchild.setAttribute("class", "p-2");
+        divChild.appendChild(spanchild);
+        div.appendChild(divChild);
+
+
+        divChild.setAttribute("class", "d-inline-flex");
+        divChild.setAttribute("name", "divchild");
+
+        var d1 = document.getElementsByName("divchild");
+
+
+        //employee name  
+        const para = document.createElement("input");
+        para.setAttribute("type", "text");
+        para.setAttribute("id", "Ename_"+ i)
+        para.setAttribute("class", "form-control mt-2 mb-2 me-4")
+        para.setAttribute("Placeholder", "Employee Name");
+        para.setAttribute("name", "Ename");
+        para.setAttribute("asp-for", "Ename");
+        divChild.appendChild(para);
+
+        ///
+        //* Dob//
+        const para1 = document.createElement("input");
+        para1.setAttribute("type", "text");
+        para1.setAttribute("id", "Dob_" + i)
+        para1.setAttribute("class", "form-control mt-2 mb-2 me-4 textbox-n")
+        para1.setAttribute("Placeholder", "Date of Birth");
+        para1.setAttribute("name", "Dob");
+        para1.setAttribute("asp-for", "Dob");
+        para1.setAttribute("onfocus", "this.type='date'");
+        para1.setAttribute("onblur", "this.type='text'");
+
+        divChild.appendChild(para1);
+        ///
+        //email//
+        const email = document.createElement("input");
+        email.setAttribute("type", "text");
+        email.setAttribute("id", "email_" + i)
+        email.setAttribute("class", "form-control mt-2 mb-2 me-4")
+        email.setAttribute("Placeholder", "Employee Email Id");
+        email.setAttribute("name", "email");
+         email.setAttribute("asp-for", "Email");
+        divChild.appendChild(email);
+        //
+
+        //primary Emp//
+        const chk = document.createElement("input");
+        chk.setAttribute("type", "checkbox");
+        chk.setAttribute("id", "chk_" + i);
+        chk.setAttribute("class", "form-check-inline mt-2 mb-2 me-4");
+        chk.setAttribute("name", "chk");
+        chk.setAttribute("asp-for","PriEmp");
+       
+        divChild.appendChild(chk);
+        //
+
+
+
+        // close button
+        const remove = document.createElement("button");
+        remove.setAttribute("class", "btn-close mt-2 mb-2 me-4");
+        remove.setAttribute("id", "btn_" + i);
+        divChild.appendChild(remove);
+        div.appendChild(document.createElement("br"));
+        remove.setAttribute("onclick", "can('btn_" + i + "')");
+
+
+
+
+
+    }
+    function can(btnId) {
+
+        var parent = document.getElementById(btnId).parentElement;
+        parent.nextSibling.remove();
+        parent.remove()
+        console.log();
+
+
+
+    }
+    function save() 
+    {
+        check()
+        var x = document.querySelectorAll('input[name="Ename"]');
+       var z = document.querySelectorAll('input[name="email"]');
+  
+
+    
+        var y;
+        //display error
+        var spanError = document.getElementById("spanError");
+        spanError.innerHTML = "";
+        spanError.className = "d-inline-flex";
+   
+        //check values null or not null
+        for (let i = 0; i < x.length; i++) {
+            y = x[i].nextSibling;
+
+            var txtFName = document.getElementById(x[i].id).value;
+            var txtemail = y.value;
+            if (txtFName.trim() == "") {
+                spanError.innerHTML += "Enter Name for Employee " + (i + 1) + "<br/>";
+
+            }
+        
+             if (txtemail.trim() == "") {
+                spanError.innerHTML += "Enter Email for Employee " + (i + 1) + "<br/>";
+
+            }
+            
+            if (spanError.value != "") {
+                document.getElementById("divError").style.display = "block"
+            }
+
+            console.log(txtFName, txtemail);
+        }
+        var post=new Object()
+        post.CompName=$("#cname").val();
+        Post.ComRef=$("#cref").val();
+        $(document).ready(function(){
+
+  $.ajax({
+                 type: 'POST',
+                contentType: "application/json",
+                  url: '@Url.Action("Index","Home")',
+                   data: JSON.stringify(post),
+                  success:function(result,status,xhr)
+                {
+                    alert("save");
+                }
+               })
+        })
+      
+    }
+    function Cancel() {
+        location.reload();
+    }
+</script>
+</head>
+<body>
+ 
+    <div class="container">
+        <div class="form-row">
+
+            <div class="col-md-3" id="main">
+              
+                 <input type="text" class="form-control mb-2"  id="cname" placeholder="Company Name" >
+                <input type="text" class="form-control mb-2" id="cref"  placeholder="Company Reference"> 
+            </div
+            <div class="form-group col-md-3 mt-3 mb-2">
+                <button type="button" class="btn btn-outline-primary" onclick="Add()">Add Employee Details</button>
+            </div>
+            <div class="alert alert-danger" id="divError" style="display: none;">
+                <label id="spanError"></label>
+            </div>
+            <div id='con'>
+
+            </div>
+            <div class="col-md-3">
+                <input type="submit" class="btn btn-outline-success mt-3" value="Save" onclick="save()"> 
+                <input type="button" class="btn btn-outline-danger mt-3" value="Cancel" onclick="Cancel()">
+
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+
+
